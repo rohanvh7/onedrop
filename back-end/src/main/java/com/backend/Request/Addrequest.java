@@ -26,9 +26,9 @@ public class Addrequest {
     private String phone;
     @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "Gender must contain only Alphabets.")
     private String gender;
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "State name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "State name must contain only Alphabets.")
     private String state;
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "City name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "City name must contain only Alphabets.")
     private String city;
     @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "Bloodgroup must contain only Alphabets.")
     private String bloodgroup;

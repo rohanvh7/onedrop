@@ -15,10 +15,10 @@ public class camprequest {
     @Pattern(regexp = "^[a-zA-Z.,#&\\s]+$",message = "Address must contain only Alphabets and some special characters(.,#&).")
     @NotNull
     private String address;
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "City name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "City name must contain only Alphabets.")
     @NotNull
     private String city;
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "State name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "State name must contain only Alphabets.")
     @NotNull
     private String state;
     @JsonFormat(pattern="yyyy-MM-dd")

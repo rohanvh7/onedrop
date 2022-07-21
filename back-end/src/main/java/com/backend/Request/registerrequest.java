@@ -30,10 +30,10 @@ public class registerrequest {
     @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "Gender must contain only Alphabets.")
     private String gender;
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "State name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "State name must contain only Alphabets.")
     private String state;
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "City name must contain only Alphabets.")
+    @Pattern(regexp = "^[a-zA-Z()\\s]+$",message = "City name must contain only Alphabets.")
     private String city;
     @NotNull
     @Pattern(regexp = "^[a-zA-Z\\s]+$",message = "Bloodgroup must contain only Alphabets.")
