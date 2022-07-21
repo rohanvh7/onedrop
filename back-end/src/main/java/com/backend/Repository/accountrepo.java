@@ -22,9 +22,17 @@ public interface accountrepo extends JpaRepository<account, Long> {
 
     @Query("select u from account u where u.email= :email")
     account findbyemail(@Param("email") String email);
-
+    
+    @Query("select u from account u where u.email= :email and u.password=:password")
+    account find_by_email_and_password(@Param("email") String email,@Param("password") String password);
+    
     @Transactional
     @Modifying
     @Query("update account u set u.password= :password where u.email= :email")
     void Updatepassword(@Param("password")String password,@Param("email")String email);
+    
+    
+    
+    
+
 }
