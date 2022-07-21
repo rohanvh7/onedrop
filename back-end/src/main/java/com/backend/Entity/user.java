@@ -13,7 +13,7 @@ import java.util.Date;
 public class user {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
     private String email;
     private String firstname;

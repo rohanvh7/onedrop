@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class history {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idhistory;
     private String email;
     private String record;
