@@ -23,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import com.sun.mail.util.MailConnectException;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -89,8 +90,10 @@ public class AuthController {
                 String html = templateEngine.process("register", context);
                 try {
                     emailService.sendEmail(register.getUsername(),html,"Registration Successful");
-                } catch (MessagingException e) {
+                } catch (MailConnectException e) {
                     return ResponseEntity.ok(new message("Registeration Successful. But due to some problem the email will not be delivered"));
+                }catch(MessagingException e){
+                	return ResponseEntity.ok(new message("Some Unkown Exception!!!"));
                 }
                 return ResponseEntity.ok(new message("Registeration successful. Login to get access"));
             }else{
@@ -103,7 +106,9 @@ public class AuthController {
     @PostMapping(value = "login")
     public ResponseEntity<?> login(@RequestBody loginrequest login){
         account account = accountrepo.findbyemail(login.getUsername());
+        account check_password=accountrepo.find_by_email_and_password(login.getUsername(),login.getPassword());
         if(account!=null){
+        	if(check_password!=null) {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -120,8 +125,12 @@ public class AuthController {
             } else {
                 return ResponseEntity.badRequest().body(new message("Something went wrong."));
             }
-            System.out.println(result.toString());
             return ResponseEntity.ok(result);
+            }
+        else {
+        	return ResponseEntity.badRequest().body(new message("Password for "+ login.getUsername()+" is wrong. Try again!!"));
+        }
+        
         }else{
             return ResponseEntity.badRequest().body(new message("User Not found with email address "+ login.getUsername()+". Register yourself"));
         }
